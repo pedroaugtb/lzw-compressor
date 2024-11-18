@@ -27,7 +27,7 @@ def read_codes_from_file(input_file, max_bits, variable_code_size):
             next_code += 1
     return codes
 
-def lzw_decompress(input_file_path, output_file_path, max_bits=12, variable_code_size=False, collect_stats=False, stats_file_path="stats/decompression_stats.json"):
+def lzw_decompress(input_file_path, output_file_path, max_bits=12, variable_code_size=False, collect_stats=False, stats_file_path="stats/decompression_stats4.json"):
     # Initialize the dictionary
     dictionary = {i: chr(i) for i in range(256)}
     next_code = 256

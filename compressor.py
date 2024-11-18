@@ -24,7 +24,7 @@ def write_codes_to_file(codes, output_file, max_bits, variable_code_size):
                 next_code_increase = 2 ** code_size
     bit_writer.flush()
     
-def lzw_compress(input_file_path, output_file_path, max_bits=12, variable_code_size=False, collect_stats=False, stats_file_path="stats/compression_stats.json"):
+def lzw_compress(input_file_path, output_file_path, max_bits=12, variable_code_size=False, collect_stats=False, stats_file_path="stats/compression_stats4.json"):
     # Initialize the Trie and variables
     trie = Trie()
     trie.initialize_with_ascii()
