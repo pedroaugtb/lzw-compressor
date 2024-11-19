@@ -1,3 +1,4 @@
+streeamlit
 psutil
 matplotlib
 pandas
