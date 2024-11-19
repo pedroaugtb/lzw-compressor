@@ -8,29 +8,12 @@ import os
 import psutil
 import sys
 
-# compressor.py
-
-def write_codes_to_file(codes, output_file, max_bits, variable_code_size):
-    bit_writer = BitWriter(output_file)
-    code_size = 9 if variable_code_size else max_bits  # Start with 9 bits if variable
-    max_table_size = 2 ** max_bits
-    next_code_increase = 2 ** code_size
-    for code in codes:
-        bit_writer.write_bits(code, code_size)
-        if variable_code_size:
-            # Increase code size if necessary
-            if code >= next_code_increase - 1 and code_size < max_bits:
-                code_size += 1
-                next_code_increase = 2 ** code_size
-    bit_writer.flush()
-    
 def lzw_compress(input_file_path, output_file_path, max_bits=12, variable_code_size=False, collect_stats=False, stats_file_path="stats/compression_stats.json"):
     # Initialize the Trie and variables
     trie = Trie()
     trie.initialize_with_ascii()
     max_table_size = 2 ** max_bits  # Maximum number of codes
     string = ''
-    codes = []
     dictionary_sizes = []
     
     # Initialize statistics
@@ -49,41 +32,49 @@ def lzw_compress(input_file_path, output_file_path, max_bits=12, variable_code_s
     process = psutil.Process(os.getpid())
     peak_memory = 0
     
-    # Read input data
-    with open(input_file_path, 'rb') as input_file:
+    # Read input data and compress
+    with open(input_file_path, 'rb') as input_file, open(output_file_path, 'wb') as output_file:
         data = input_file.read()
         stats["original_size_bytes"] = len(data)
-    
-    # Convert data to string where each byte is a character
-    data = data.decode('latin1')  # 'latin1' ensures a 1:1 mapping of bytes to characters
-    
-    # Main compression loop
-    for symbol in data:
-        combined = string + symbol
-        if trie.search(combined) is not None:
-            string = combined
-        else:
-            if string:
-                # Output the code for string
-                code = trie.search(string)
-                codes.append(code)
-            if trie.next_code < max_table_size:
-                trie.insert(combined)
-                # Track dictionary size over time
-                dictionary_sizes.append(trie.next_code)
-            string = symbol
-    
-    # Output the code for the last string
-    if string:
-        code = trie.search(string)
-        codes.append(code)
-    
-    stats["number_of_codes"] = len(codes)
-    stats["dictionary_size_over_time"] = dictionary_sizes.copy()
-    
-    # Write codes to the output file
-    with open(output_file_path, 'wb') as output_file:
-        write_codes_to_file(codes, output_file, max_bits, variable_code_size)
+        
+        # Convert data to string where each byte is a character
+        data = data.decode('latin1')  # 'latin1' ensures a 1:1 mapping of bytes to characters
+        
+        bit_writer = BitWriter(output_file)
+        code_size = 9 if variable_code_size else max_bits
+        next_code_increase = 1 << code_size
+        next_code = 256
+        
+        # Main compression loop
+        for symbol in data:
+            combined = string + symbol
+            if trie.search(combined) is not None:
+                string = combined
+            else:
+                if string:
+                    # Output the code for string
+                    code = trie.search(string)
+                    bit_writer.write_bits(code, code_size)
+                    stats["number_of_codes"] += 1
+                if trie.next_code < max_table_size:
+                    trie.insert(combined)
+                    # Track dictionary size over time
+                    dictionary_sizes.append(trie.next_code)
+                    stats["dictionary_size_over_time"].append(trie.next_code)
+                    
+                    next_code += 1
+                    if variable_code_size and next_code == next_code_increase and code_size < max_bits:
+                        code_size += 1
+                        next_code_increase = 1 << code_size
+                string = symbol
+        
+        # Output the code for the last string
+        if string:
+            code = trie.search(string)
+            bit_writer.write_bits(code, code_size)
+            stats["number_of_codes"] += 1
+        
+        bit_writer.flush()
     
     end_time = time.time()
     stats["execution_time_seconds"] = end_time - start_time
@@ -97,6 +88,7 @@ def lzw_compress(input_file_path, output_file_path, max_bits=12, variable_code_s
     else:
         stats["compression_ratio"] = 0.0
     
+    # Get peak memory usage
     current_memory = process.memory_info().rss
     if current_memory > peak_memory:
         peak_memory = current_memory

@@ -3,6 +3,7 @@
 import argparse
 from compressor import lzw_compress
 from decompressor import lzw_decompress
+import sys
 
 """
 Usage example: 
@@ -32,17 +33,21 @@ def main():
             for key, value in stats.items():
                 print(f"{key}: {value}")
     elif args.mode == 'decompress':
-        stats = lzw_decompress(
-            args.input_file,
-            args.output_file,
-            max_bits=args.bits,
-            variable_code_size=args.variable,
-            collect_stats=args.test
-        )
-        if args.test:
-            print("Decompression Statistics:")
-            for key, value in stats.items():
-                print(f"{key}: {value}")
+        try:
+            stats = lzw_decompress(
+                args.input_file,
+                args.output_file,
+                max_bits=args.bits,
+                variable_code_size=args.variable,
+                collect_stats=args.test
+            )
+            if args.test:
+                print("Decompression Statistics:")
+                for key, value in stats.items():
+                    print(f"{key}: {value}")
+        except ValueError as e:
+            print(e)
+            sys.exit(1)
 
 if __name__ == '__main__':
     main()

@@ -1,7 +1,7 @@
 {
     "original_size_bytes": 9281,
-    "compressed_size_bytes": 5196,
-    "compression_ratio": 1.7861816782140107,
+    "compressed_size_bytes": 4827,
+    "compression_ratio": 1.922726331054485,
     "number_of_codes": 3464,
     "dictionary_size_over_time": [
         257,
@@ -3468,6 +3468,6 @@
         3718,
         3719
     ],
-    "execution_time_seconds": 0.033507585525512695,
-    "peak_memory_usage_bytes": 14749696
+    "execution_time_seconds": 0.022797107696533203,
+    "peak_memory_usage_bytes": 14262272
 }

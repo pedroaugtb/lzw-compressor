@@ -10,12 +10,10 @@ class BitWriter:
         while num_bits > 0:
             remaining_bits_in_byte = 8 - self.bits_filled
             bits_to_write = min(remaining_bits_in_byte, num_bits)
-            # Shift the bits to align them
             shifted_bits = (bits >> (num_bits - bits_to_write)) & ((1 << bits_to_write) - 1)
             self.current_byte = (self.current_byte << bits_to_write) | shifted_bits
             self.bits_filled += bits_to_write
             num_bits -= bits_to_write
-            # If the byte is filled, write it to the file
             if self.bits_filled == 8:
                 self.file.write(bytes([self.current_byte]))
                 self.current_byte = 0
