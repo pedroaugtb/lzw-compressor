@@ -147,4 +147,17 @@ Link para o site:
 https://trabalho-algoritmos-2.streamlit.app
 ```
 
+## Testes
+
+Para realizar testes, utilize arquivos de entrada variados, como `.txt`, `.csv` e `.bmp`, e compare os resultados antes e depois da compressão. Acompanhe as métricas geradas para avaliar o desempenho.
+
+---
+
+## Referências
+
+- **Documentação LZW:** [Wikipedia - LZW](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch)  
+- **Estrutura Trie:** [Wikipedia - Trie](https://en.wikipedia.org/wiki/Trie)  
+- **Recursos Adicionais:**  
+    - [GeeksforGeeks - Implementação de Tries](https://www.geeksforgeeks.org/trie-insert-and-search/)  
+    - [Documentação do Python para Manipulação de Bits](https://docs.python.org/3/library/struct.html)
 
