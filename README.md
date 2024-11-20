@@ -142,3 +142,9 @@ Use o Streamlit para uma interface gráfica:
 ```bash
 streamlit run streamlit_app.py
 ```
+Link para o site:
+```bash
+https://trabalho-algoritmos-2.streamlit.app
+```
+
+
