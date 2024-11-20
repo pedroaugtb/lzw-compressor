@@ -25,7 +25,7 @@
 6. [Uso](#uso)
     - [Compressão](#compressão)
     - [Descompressão](#descompressão)
-    - [Processamento de Estatísticas](#processamento-de-estatísticas)
+    - [Interface Visual](#interface-visual)
 7. [Coleta de Estatísticas](#coleta-de-estatísticas)
 8. [Geração de Relatórios](#geração-de-relatórios)
 9. [Testes](#testes)
