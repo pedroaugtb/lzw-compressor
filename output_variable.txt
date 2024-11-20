@@ -1,9 +1,1 @@
-UNIVERSIDADE FEDERAL DE MINAS GERAIS
-Instituto de Ciências Exatas
-Departamento de Ciência da Computação
-DCC207 -- Algoritmos 2
-Prof. Renato Vimieiro
-Trabalho Prático 1 -- Manipulação de sequências
-Objetivos
-Nesse trabalho serão abordados os aspectos práticos de manipulação de sequências.
-Especificamente, serão explorados aspectos de implementa�
+
