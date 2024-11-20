@@ -25,14 +25,14 @@
 6. [Uso](#uso)
     - [Compressão](#compressão)
     - [Descompressão](#descompressão)
-    - [Interface Visual](#interface-visual)
+    - [Documentação e Interface Visual](#documentação-e-interface-visual)
 7. [Testes](#testes)
 8. [Referências](#referências)
 ---
 
 ## Descrição
 
-Este projeto implementa o algoritmo de compressão e descompressão Lempel-Ziv-Welch (LZW), utilizando uma estrutura Trie para gerenciar o dicionário de códigos. Ele permite comprimir e descomprimir arquivos de forma eficiente, analisando o desempenho com base em estatísticas como taxa de compressão, tempo de execução e uso de memória.
+Este projeto implementa o algoritmo de compressão e descompressão Lempel-Ziv-Welch (LZW), utilizando uma estrutura Trie para gerenciar o dicionário de códigos. Ele permite comprimir e descomprimir arquivos de forma eficiente, analisando o desempenho com base em estatísticas como taxa de compressão, tempo de execução e uso de memória. A documentação e análises foram feitas utilizando a plataforma StreamLit, com o link disponível ao final do arquivo.
 
 ---
 
@@ -131,7 +131,7 @@ python main.py decompress <arquivo_entrada> <arquivo_saida> [opções]
 
 As estatísticas coletadas são salvas no diretório `stats/`.
 
-### Interface Visual
+### Documentação e Interface Visual
 
 Use o Streamlit para uma interface gráfica:
 
