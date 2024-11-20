@@ -26,12 +26,8 @@
     - [Compressão](#compressão)
     - [Descompressão](#descompressão)
     - [Interface Visual](#interface-visual)
-7. [Coleta de Estatísticas](#coleta-de-estatísticas)
-8. [Geração de Relatórios](#geração-de-relatórios)
-9. [Testes](#testes)
-12. [Referências](#referências)
-13. [Contato](#contato)
-
+7. [Testes](#testes)
+8. [Referências](#referências)
 ---
 
 ## Descrição
