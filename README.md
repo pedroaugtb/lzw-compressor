@@ -60,7 +60,6 @@ Este projeto implementa o algoritmo de compressão e descompressão Lempel-Ziv-W
 ├── trie.py                    # Implementação da estrutura Trie
 ├── process_stats.py           # Processamento de estatísticas coletadas
 ├── streamlit_app.py           # Interface visual em Streamlit
-├── print.py                   # Funções auxiliares de impressão
 ├── compressed_variable.lzw    # Exemplo de arquivo compactado
 ├── compressed.lzw             # Exemplo de arquivo compactado
 ├── inputs/                    # Diretório com arquivos de entrada
