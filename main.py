@@ -11,8 +11,8 @@ using the LZW algorithm. It supports options for variable code size, test mode f
 collecting statistics, and custom maximum bit sizes.
 
 Usage example:
-    python main.py compress input.txt compressed.lzw --variable --test
-    python main.py decompress compressed.lzw output.txt --variable --test
+    python3 main.py compress inputs/input.txt compressed.lzw --variable --test
+    python3 main.py decompress compressed.lzw outputs/output.txt --variable --test
 """
 
 
